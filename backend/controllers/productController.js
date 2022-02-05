@@ -1,8 +1,9 @@
 const Product = require('../models/productModel')
 const ErrorHander = require('../utils/errorhandler')
 const catchAsyncErrors = require('../middleware/catchAsyncErrors')
-
+const ApiFeatures = require("../utils/apifeatures")
 //createproduct --admin
+
 exports.createProduct = catchAsyncErrors(
   async (req,res,next) => {
     const product = await Product.create(req.body)
@@ -16,10 +17,14 @@ exports.createProduct = catchAsyncErrors(
 
 //get All products
 exports.getAllProducts = catchAsyncErrors (async (req, res) => {
-        const products = await Product.find()
+  const resultPerPage = 5;
+  const productCount = await Product.countDocuments();
+  const apiFeature = new ApiFeatures(Product.find(), req.query).search().filter().pagination(resultPerPage)
+        const products = await apiFeature.query; //returned clasds is APifeature so we can use methods of that class 
         res.status(200).json({
             success: true,
-            products: products
+            products: products,
+            productCount:productCount
         })
 })
 
