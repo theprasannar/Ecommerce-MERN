@@ -16,15 +16,19 @@ exports.createProduct = catchAsyncErrors(
 )
 
 //get All products
-exports.getAllProducts = catchAsyncErrors (async (req, res) => {
-  const resultPerPage = 5;
+exports.getAllProducts = catchAsyncErrors (async (req, res,next) => {
+  const resultPerPage = 8;
   const productCount = await Product.countDocuments();
-  const apiFeature = new ApiFeatures(Product.find(), req.query).search().filter().pagination(resultPerPage)
-        const products = await apiFeature.query; //returned clasds is APifeature so we can use methods of that class 
+  const apiFeature = new ApiFeatures(Product.find(), req.query)
+  .search().filter().pagination(resultPerPage)
+  
+  //returned class is APifeature so we can use methods of that class 
+        const products = await apiFeature.query; 
         res.status(200).json({
             success: true,
             products: products,
-            productCount:productCount
+            productCount:productCount,
+            resultPerPage:resultPerPage
         })
 })
 

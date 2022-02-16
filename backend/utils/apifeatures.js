@@ -26,9 +26,10 @@ class ApiFeatures{
         removeFields.forEach(removeField=> delete queryCopy[removeField]);
 
     
-        //folter for pricing information
+        //filter for pricing information
         let queryStr = JSON.stringify(queryCopy);
         queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, (key) => `$${key}`)
+        
         this.query = this.query.find(JSON.parse(queryStr));
     
        
