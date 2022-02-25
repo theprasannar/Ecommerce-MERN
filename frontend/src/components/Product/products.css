@@ -21,3 +21,33 @@
     padding:0.5vmax;
     margin-bottom: 1.5vmax;
 }
+.Filter{
+  
+    width: 10%;
+    position: absolute;
+    top:30%;
+    left:2%;
+}
+.categoryBox{
+    padding:0%;
+    display: flex;
+    flex-direction: column;
+}
+.category-link{
+    list-style: none;
+    color: rgba(0, 0, 0, 0.61);
+    font: 300 0.9rem "Roboto";
+    cursor: pointer; 
+    margin: 0.25rem;
+    transition: all 0.5s;
+}
+.category-link:hover{
+    color: rgba(236, 72, 72, 0.746)
+}
+@media screen and (max-width:600px){
+    .Filter{
+        width:25%;
+        position: static;
+        margin:auto;
+    }
+}

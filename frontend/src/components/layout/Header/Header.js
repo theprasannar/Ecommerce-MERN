@@ -4,9 +4,12 @@ import {ShoppingCart,Search,Person} from '@material-ui/icons'
 import logo from '../../../assets/logo.png'
 import useStyles from './style';
 import "./Header.css"
+import {useSelector} from 'react-redux'
 
 const Header = () => {
   const classes = useStyles()
+
+  const {isAuthenticated,user} = useSelector(state => state.user)
   return( <div>
      <AppBar position="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
@@ -33,11 +36,11 @@ const Header = () => {
               </Badge>
             </IconButton>
           </div>
-          <div className={classes.button}>
+         {!isAuthenticated ? <div className={classes.button}>
             <IconButton  color="inherit">
-                <Person />
+            <a href="http://localhost:3000/login">   <Person /> </a>
             </IconButton>
-          </div>
+          </div>:<button className="profilebtn">{user.name.slice(0,1).toUpperCase()}</button>}
         </Toolbar>
       </AppBar>
   </div>)

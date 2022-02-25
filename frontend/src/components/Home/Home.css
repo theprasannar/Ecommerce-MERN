@@ -112,3 +112,27 @@
   
     transform: translateY(-1vmax);
   }
+  @media screen  and (max-width:600px){
+    .container {
+      display: flex;
+      margin: 2vmax auto;
+      width: 100vw;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 100%;
+    }
+    .productCard {
+      width: 25vmax;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: rgb(48, 48, 48);
+      margin: 1vmax;
+      transition: all 0.5s;
+      padding-bottom: 0.5vmax;
+    }
+    .productCard > img {
+      width: 25vmax;
+    }
+    
+  }

@@ -1,6 +1,7 @@
 const app = require('./app')
 
 const dotenv = require('dotenv')
+const cloudinary = require('cloudinary')
 const connectDataBase = require('./config/database')
 
 //config
@@ -9,6 +10,12 @@ dotenv.config({path:"backend/config/config.env"})
 
 //connecting to database
 connectDataBase()
+
+cloudinary.config({
+    cloud_name:process.env.CLOUDINARY_NAME,
+    api_key:process.env.CLOUDINARY_API,
+    api_secret:process.env.CLOUDINARY_API_SECRET
+})
 
 //handle uncought Exception
 process.on('uncaughtException',(err) => {
