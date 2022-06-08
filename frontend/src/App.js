@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
 import Header from './components/layout/Header/Header'
 import {BrowserRouter as Router,Route,Switch} from "react-router-dom";
 import WebFont from "webfontloader";
@@ -18,22 +18,46 @@ import UpdateProfle from './components/User/UpdateProfile.js'
 import UpdatePassword from './components/User/UpdatePassword.js'
 import ForgotPassword from './components/User/ForgotPassword.js'
 import ResetPassword from './components/User/ResetPassword.js'
+import Shipping from './components/Cart/Shipping.js'
+import Cart from './components/Cart/Cart'
+import ConfirmOrder from './components/Cart/ConfirmOrder.js'
+import Payment from './components/Cart/Payment.js'
+import axios from 'axios';
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import OrderSuccess from './components/Cart/OrderSuccess.js'
+import  MyOrders  from './components/Order/MyOrders.js';
+import OrderDetails from './components/Order/OrderDetails.js'
 function App() {
 
   const {isAuthenticated,user} = useSelector(state => state.user)
-    useEffect(() => {
-        WebFont.load({
-          google: {
-            families: ["Roboto", "Droid Sans", "Chilanka"],
-          },
-        })
-      },[])
+  const [stripeApiKey, setStripeApiKey] = useState("");
+
+  async function getStripeApiKey() {
+    const { data } = await axios.get("/api/v1/stripeapikey");
+
+    setStripeApiKey(data.stripeApiKey);
+  }
+ 
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ["Roboto", "Droid Sans", "Chilanka"],
+      },
+    });
+    if (window.location.href!=="http://localhost:3000/login")
+    store.dispatch(loadUser());
+    
+    getStripeApiKey();
+  }, []);
+
       
   return (
       <Router>
-      <Header />
       {isAuthenticated && <UserOptions user={user} />}
-        <Switch>
+
+      <Header />
+   
         <Route exact path="/" component={Home} />
         <Route exact path="/product/:id" component={ProductDetails} />
         <Route exact path="/products" component={Products} />
@@ -45,7 +69,17 @@ function App() {
         <ProtectedRoute exact path="/password/update" component={UpdatePassword}/>
         <Route exact path="/password/forget" component={ForgotPassword}/>
         <Route exact path="/password/reset/:token" component={ResetPassword}/>
-        </Switch>
+        <Route exact path="/cart" component={Cart}/>
+        <ProtectedRoute exact path="/shipping" component={Shipping}/>
+        <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder}/>
+        {stripeApiKey && (
+        <Elements stripe={loadStripe(stripeApiKey)}>
+          <ProtectedRoute exact path="/process/payment" component={Payment} />
+        </Elements>
+      )}
+      <ProtectedRoute exact path="/success" component={OrderSuccess}/>
+      <ProtectedRoute exact path="/orders" component={MyOrders}/>
+      <ProtectedRoute exact path="/order/:id" component={OrderDetails}/>
       </Router>  
   )
 }

@@ -8,12 +8,12 @@ const ProtectedRoute = ({component:Component, ...rest}) => {
 const { loading, isAuthenticated } = useSelector((state) => state.user);
 
   return (
-    <Fragment>
+    <Fragment> 
         {!loading && (
             <Route 
             {...rest} 
             render={() => { 
-                if(!isAuthenticated)
+                if(isAuthenticated === false)
                 {
                     return <Redirect to='/login'/>
                 }

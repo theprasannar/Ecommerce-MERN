@@ -9,7 +9,7 @@ import './LoginSignup.css'
 import {useAlert} from 'react-alert'
 import Loader from '../layout/Loader/Loader'
 
-const LoginSignup = ({history}) => {
+const LoginSignup = ({history,location}) => {
 
   const dispatch = useDispatch()
   const loginTab= useRef(null);
@@ -63,16 +63,26 @@ const LoginSignup = ({history}) => {
       };
     
 
+    const redirect = location.search ? location.search.split('=')[1]:'/account'
+    console.log(location.search);
     useEffect(() => {
       if(error) {
         alert.error(error);
         dispatch(clearErrors);
       }
+
       if(isAuthenticated)
       {
-        history.push('/account')
+        history.push(redirect)
       }
-    },[dispatch,error,history,isAuthenticated]);
+    },[dispatch,error,history,isAuthenticated,redirect]);
+
+    //login submit handler
+    const loginSubmit = (e) => {
+      e.preventDefault();
+        dispatch(login(loginEmail,loginPassword));
+    }
+
     //switching forms
     const switchTab = (e,tab) => {
         if(tab === "login")
@@ -93,10 +103,6 @@ const LoginSignup = ({history}) => {
         }
     }
 
-    const loginSubmit = (e) => {
-      e.preventDefault();
-        dispatch(login(loginEmail,loginPassword));
-    }
   return (
     <>
       {loading ? <Loader /> :<>

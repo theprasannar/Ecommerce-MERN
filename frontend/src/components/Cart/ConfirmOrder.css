@@ -1,0 +1,167 @@
+.confirmOrderPage{
+    height:100vh;
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: 6fr 3fr;
+}
+.confirmOrderPage>div:last-child {
+    border-left: 1px solid rgb(27, 25, 25)
+}
+.confirmShippingArea{
+    padding:5vmax;
+    padding-bottom:0px;
+}
+
+.confirmShippingArea > p{
+    font: 300 1.8vmax "Roboto", "Helvetica Neue";
+    text-transform: uppercase;
+    text-align: center;
+    color: rgb(88, 88, 88);
+    border-bottom: 1px solid rgb(51, 51, 51);
+}
+.Conainer  div{
+    display: flex;
+    margin:2vmax;
+}
+.Conainer  p {
+    font: 300 1vmax "Roboto", "Helvetica Neue";
+    color: rgb(46, 46, 46);
+}
+
+.Conainer  span {
+    font: 300 1vmax "Roboto", "Helvetica Neue";
+    color: rgb(46, 46, 46);
+    margin-left: 0.7vmax;
+}
+
+.confirmCartItems{
+    padding:5vmax;
+    padding-bottom:0px;
+}
+
+.confirmCartItems > p{
+    font: 300 1.8vmax "Roboto", "Helvetica Neue";
+    text-transform: uppercase;
+    text-align: center;
+    color: rgb(88, 88, 88);
+    border-bottom: 1px solid rgb(51, 51, 51);
+}
+
+
+.confirmCartItemsContainer > div {
+    font: 300 1vmax "Roboto", "Helvetica Neue";
+    color: rgb(46, 46, 46);
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.confirmCartItemsContainer > div > img {
+    width: 4vmax;
+    padding:1vmax;
+}
+
+.confirmCartItemsContainer > div >  a {
+    text-decoration: none;
+    color:rgba(255, 93, 93, 0.863);
+    width: 60%;
+}
+
+.confirmCartItemsContainer > div >  span {
+    font: 500 1vmax "Roboto", "Helvetica Neue";
+  
+}
+
+.orderSummary{
+    padding: 5vmax;
+}
+
+.orderSummary > p{
+    font: 300 1.8vmax "Roboto", "Helvetica Neue";
+    text-transform: uppercase;
+    text-align: center;
+    color: rgb(88, 88, 88);
+    border-bottom: 1px solid rgb(51, 51, 51);
+}
+
+.Container2 div{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2vmax;
+}
+.orderSummaryTotal{
+    margin: 2vmax;
+    display:flex;
+    justify-content: space-between;
+}
+.orderSummary> button {
+    border:none;
+    background-color:rgba(253, 102, 102, 0.966);
+    transition: all 0.7s;
+    padding:0.5vmax;
+    width: 100%;
+    font:200 1.1rem "Roboto";
+    cursor: pointer;
+    color:white;
+}
+
+.orderSummary> button:hover{
+    background-color:rgba(134, 134, 134, 0.966);
+}
+
+@media (max-width: 600px){
+    .confirmOrderPage{
+        grid-template-columns: 1fr;
+    }
+    .confirmShippingArea > p{
+        font: 300 2.6vmax "Roboto", "Helvetica Neue";
+    }
+    .Conainer  p {
+        font: 300 1.6vmax "Roboto", "Helvetica Neue";
+       
+    }
+    .Conainer  span {
+        font: 300 1.6vmax "Roboto", "Helvetica Neue";
+    }
+    
+ 
+    .confirmCartItems > p{
+        font: 300 2.6vmax "Roboto", "Helvetica Neue";
+    }
+    
+
+    .confirmCartItemsContainer > div {
+        font: 300 1.6vmax "Roboto", "Helvetica Neue";
+      
+    }
+    
+    .confirmCartItemsContainer > div > img {
+        width: 6vmax;
+        padding:1.5vmax;
+    }
+    
+
+    
+    .confirmCartItemsContainer > div >  span {
+        font: 500 1.6vmax "Roboto", "Helvetica Neue";
+        width:60%;
+    }
+    
+
+    .orderSummary > p{
+        font: 300 2.6vmax "Roboto", "Helvetica Neue";
+    }
+    
+    .orderSummary> button {
+        border:none;
+        background-color:rgba(253, 102, 102, 0.966);
+        transition: all 0.7s;
+        padding:0.5vmax;
+        width: 100%;
+        font:200 1.3rem "Roboto";
+        cursor: pointer;
+        color:white;
+    }
+    
+}

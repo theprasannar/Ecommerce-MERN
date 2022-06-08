@@ -15,7 +15,7 @@ li {
     display: block;
     padding: 8px;
     color:black;
-    
+    font: 200 1rem "Droid Sans";
   }
   li a :hover{
     background-color: rgb(0, 0, 0);

@@ -5,7 +5,7 @@ const User = require("../models/userModel");
 
 exports.isAuthenticatedUser = catchAsyncErrors( async (req, res, next)=>{
 
-    //saved cookie wyjile login or registration time
+    //saved cookie while login or registration time
     const {token} = req.cookies
 
     if(!token) {

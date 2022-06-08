@@ -7,6 +7,9 @@ import {
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_FAIL,
     PRODUCT_DETAILS_SUCCESS,
+    NEW_REVIEW_REQUEST,
+    NEW_REVIEW_SUCCESS,
+    NEW_REVIEW_FAIL,
 } from "../constants/productConstants"
 
 
@@ -53,7 +56,31 @@ export const getProductDetails = (id) => async (dispatch) =>{
 
 }
 
-//state will reain as it is but with the spread operator it will update and clear error
+
+//NEw Review
+export const newReview = (reviewData) => async (dispatch) =>{
+    try{
+        dispatch({type: NEW_REVIEW_REQUEST})
+
+        const config = { 
+            headers: {'Content-Type':"application/json"}
+        }
+
+        const {data} = await axios.put(`/api/v1/review`,reviewData,config)
+        dispatch({
+            type:NEW_REVIEW_SUCCESS,
+            payload:data.success
+        })
+    }catch(e){
+        dispatch({
+            type: NEW_REVIEW_FAIL,
+            payload:e.response.data.message
+        })
+
+    }
+
+}
+
 export const clearErrors = () => (dispatch) => {
     dispatch({type: CLEAR_ERROR})
 }

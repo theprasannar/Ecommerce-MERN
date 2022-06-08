@@ -98,10 +98,33 @@
     color:rgba(250, 71, 71, 0.5);
 }
 #registerImage > img {
-    width:3vmax;
+    width: 3vmax;
+    height: 3vmax;
     border-radius: 100%;
-    position:absolute;
-}
+    margin: 1vmax;
+  }
+  #registerImage > input {
+    display: flex;
+    padding: 0%;
+  }
+
+#registerImage > input::file-selector-button {
+    cursor: pointer;
+    width: 100%;
+    
+    height: 5vh;
+    border: none;
+    margin: 0%;
+    font: 400 0.8vmax;
+    transition: all 0.5s;
+    padding: 0 1vmax;
+    color: rgba(0, 0, 0, 0.623);
+    background-color: rgb(255, 255, 255);
+  }
+  
+  #registerImage > input::file-selector-button:hover {
+    background-color: rgb(235, 235, 235);
+  }
 
 
 

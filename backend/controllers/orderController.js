@@ -6,18 +6,18 @@ const catchAsyncErrors = require('../middleware/catchAsyncErrors')
 //Create NEw Order 
 exports.newOrder = catchAsyncErrors ( async (req, res)=>{
    
-    const {shippingInfo,OrderItems,paymentInfo,itemsPrice,taxPrice,shippingPrice,totalPrice} = req.body;
+    const {shippingInfo,orderItems,paymentInfo,itemsPrice,taxPrice,shippingPrice,totalPrice} = req.body;
 
     const order = await Order.create({
         shippingInfo,
-        OrderItems,
+        orderItems,
         paymentInfo,
         itemsPrice,
         taxPrice,
         shippingPrice,
         totalPrice,
         paidAt:Date.now(),
-        user:user.req._id
+        user:req.user._id
     })
 
 
@@ -31,7 +31,7 @@ exports.newOrder = catchAsyncErrors ( async (req, res)=>{
 exports.getSingleOrder = catchAsyncErrors( async (req, res)=>{
 
     //find from order that mathches wih current user
-    const order = await Order.findById(req.params.id).populate("user, name email");
+    const order = await Order.findById(req.params.id);
 
     if(!order){
         return next(new ErrorHandler("No order found",404));

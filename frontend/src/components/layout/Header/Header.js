@@ -5,10 +5,11 @@ import logo from '../../../assets/logo.png'
 import useStyles from './style';
 import "./Header.css"
 import {useSelector} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 const Header = () => {
   const classes = useStyles()
-
+  const {cartItems} = useSelector(state => state.cart)
   const {isAuthenticated,user} = useSelector(state => state.user)
   return( <div>
      <AppBar position="fixed" className={classes.appBar} color="inherit">
@@ -24,17 +25,17 @@ const Header = () => {
                 <li><a>About</a></li>
               </ul>
     
-          <div className={classes.button}>
-            <IconButton color="inherit">
-            <a href="http://localhost:3000/search">  <Search />  </a>
-            </IconButton>
-          </div>
-          <div className={classes.button}>
-            <IconButton aria-label="Show cart items" color="inherit">
-              <Badge badgeContent={2} color="secondary">
-              <ShoppingCart />
-              </Badge>
-            </IconButton>
+            <div className={classes.button}>
+              <IconButton color="inherit">
+              <Link to="/search" >  <Search style={{color: '#484848'}}/>  </Link>
+              </IconButton>
+              </div>
+              <div className={classes.button}>
+              <IconButton aria-label="Show cart items" color="inherit">
+                <Badge badgeContent={cartItems.length} color="secondary">
+              <Link to="/cart" >  <ShoppingCart style={{color: '#484848'}}/> </Link>
+                </Badge>
+              </IconButton>
           </div>
          {!isAuthenticated ? <div className={classes.button}>
             <IconButton  color="inherit">
