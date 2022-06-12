@@ -28,4 +28,8 @@
   .MuiTypography-root {
     background-color: #fff !important;
   }
+
+  .MuiTreeItem-iconContainer:hover{
+    background-color:transparent;
+  }
   
